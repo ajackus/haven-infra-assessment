@@ -1,0 +1,52 @@
+========================================
+HAVEN INFRA ASSESSMENT
+========================================
+
+1. ENVIRONMENT SETUP
+
+Terraform version:
+[Actual output]
+
+Python version:
+[Actual output]
+
+2. TERRAFORM VALIDATION
+
+terraform init
+[Actual output]
+
+terraform plan -out=tfplan
+[Actual output]
+
+terraform show -json tfplan > tfplan.json
+[Actual output]
+
+3. ACCESS CONTROL TESTS
+
+python -m pytest -v test_access_control.py
+[Actual output]
+
+4. COST TAG VALIDATION - FIRST RUN
+
+python cost_tag_check.py
+[Actual output]
+
+5. COST TAG VALIDATION - SECOND RUN
+
+python cost_tag_check.py
+[Actual output]
+
+6. COMPLETE PYTHON TEST SUITE
+
+python -m pytest -v
+[Actual output]
+
+
+
+
+
+
+
+
+
+
