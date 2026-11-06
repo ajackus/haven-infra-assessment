@@ -27,3 +27,24 @@ def can_access_screening_report(
     make this determination is missing (tenant not found, property not found), return False.
     """
     raise NotImplementedError("Implement this.")
+
+
+
+
+def can_view_screening_report(
+    manager_landlord_account_id: str,
+    report_landlord_account_id: str
+) -> bool:
+
+    if not manager_landlord_account_id:
+        return False
+
+    if not report_landlord_account_id:
+        return False
+
+    return (
+        manager_landlord_account_id
+        == report_landlord_account_id
+    )
+
+
