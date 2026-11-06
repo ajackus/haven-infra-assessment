@@ -18,17 +18,53 @@ Implement check_plan() so it:
 
 Run manually: python scripts/cost_tag_check.py fixtures/plan.json
 """
+
 import json
 import sys
 
 
+REQUIRED_TAG = "landlord_account_id"
+
+
 def check_plan(plan_path: str) -> int:
-    """
-    Returns an exit code: 0 if every resource being created or updated has
-    `landlord_account_id`, non-zero otherwise.
-    """
-    raise NotImplementedError("Implement this.")
+    """Return 0 if all created/updated resources have the required billing tag."""
+    with open(plan_path, "r", encoding="utf-8") as file:
+        plan = json.load(file)
+
+    resource_changes = plan.get("resource_changes", [])
+    failures = set()
+
+    for resource in resource_changes:
+        change = resource.get("change") or {}
+        actions = change.get("actions", [])
+
+        # Only validate resources being created or updated.
+        if not any(action in ("create", "update") for action in actions):
+            continue
+
+        address = resource.get("address", "<unknown resource>")
+        after = change.get("after")
+
+        tags = after.get("tags") if isinstance(after, dict) else None
+        tag_value = tags.get(REQUIRED_TAG) if isinstance(tags, dict) else None
+
+        if not isinstance(tag_value, str) or not tag_value.strip():
+            failures.add(address)
+
+    if failures:
+        print("FAILED: Missing required landlord_account_id tag:")
+        for address in sorted(failures):
+            print(f"- {address}")
+        return 1
+
+    print("PASSED: All created/updated resources have landlord_account_id.")
+    return 0
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python scripts/cost_tag_check.py <plan.json>")
+        sys.exit(2)
+
     sys.exit(check_plan(sys.argv[1]))
+
