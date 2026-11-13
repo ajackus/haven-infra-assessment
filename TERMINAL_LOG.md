@@ -286,3 +286,19 @@ Plan: 6 to add, 0 to change, 0 to destroy.
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if
 you run "terraform apply" now.
 PS C:\Users\ghadg\Desktop\haven-infra-assessment\terraform> 
+
+
+
+#####pytest
+
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> pytest -v                   
+================================================ test session starts ================================================
+platform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\ghadg\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\ghadg\Desktop\haven-infra-assessment
+collected 0 items                                                                                                    
+
+=============================================== no tests ran in 0.19s ===============================================
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
+
+
