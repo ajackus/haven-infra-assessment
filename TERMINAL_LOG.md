@@ -302,3 +302,25 @@ collected 0 items
 PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
 
 
+## B2 Test & Idempotency Runs.
+platform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\ghadg\AppData\Local\Programs\Python\Python312\python.exe
+
+tests/test_access_control.py::test_allows_same_account_access PASSED                                           [ 20%]
+tests/test_access_control.py::test_denies_cross_account_access PASSED                                          [ 40%]
+tests/test_cost_tag_check.py::test_reports_resources_missing_landlord_account_tag PASSED                       [ 60%]
+tests/test_cost_tag_check.py::test_is_idempotent PASSED                                                        [ 80%]
+tests/test_cost_tag_check.py::test_checks_tags_all_without_resource_type_specific_logic PASSED                 [100%]
+
+================================================= 5 passed in 0.19s =================================================
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> ^C
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> python scripts/cost_tag_check.py fixtures/plan.json
+Missing landlord_account_id tag: aws_lambda_function.mls_feed_sync
+Missing landlord_account_id tag: aws_s3_bucket.listing_media
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> python scripts/cost_tag_check.py fixtures/plan.json
+Missing landlord_account_id tag: aws_lambda_function.mls_feed_sync
+Missing landlord_account_id tag: aws_s3_bucket.listing_media
+PS C:\Users\ghadg\Desktop\haven-infra-assessment> 
