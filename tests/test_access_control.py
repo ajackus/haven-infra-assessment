@@ -9,3 +9,25 @@ Use the `property_managers`, `properties`, `tenants`, and `screening_reports` fi
 conftest.py — don't re-invent the seed data here.
 """
 from app.access_control import can_access_screening_report
+
+
+def test_allows_same_account_access(
+    property_managers, properties, tenants, screening_reports
+):
+    assert can_access_screening_report(
+        property_managers[0],
+        screening_reports[0],
+        properties=properties,
+        tenants=tenants,
+    )
+
+
+def test_denies_cross_account_access(
+    property_managers, properties, tenants, screening_reports
+):
+    assert not can_access_screening_report(
+        property_managers[0],
+        screening_reports[1],
+        properties=properties,
+        tenants=tenants,
+    )
