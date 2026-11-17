@@ -52,3 +52,5 @@ for how to use it.
 Run the tests with `python -m pytest`. Check the real plan with
 `python scripts/cost_tag_check.py fixtures/plan.json` (exits 1, flags `listing_media` and
 `mls_feed_sync`).
+
+Screen Recording: [Watch the complete assessment walkthrough](https://drive.google.com/file/d/1jwM6_mHcVaTaYXjZqFYSJix9KrHRSTHf/view?usp=sharing)
