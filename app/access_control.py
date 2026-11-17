@@ -26,4 +26,17 @@ def can_access_screening_report(
     Return True if actor may view report, False otherwise. Fail closed — if anything needed to
     make this determination is missing (tenant not found, property not found), return False.
     """
-    raise NotImplementedError("Implement this.")
+    # Blank account ids must never match each other.
+    if actor is None or report is None or not actor.landlord_account_id:
+        return False
+
+    # Exactly one match: a missing or duplicated record is ambiguous, so deny.
+    found = [t for t in tenants if t.id == report.tenant_id]
+    if len(found) != 1:
+        return False
+
+    props = [p for p in properties if p.id == found[0].property_id]
+    if len(props) != 1:
+        return False
+
+    return props[0].landlord_account_id == actor.landlord_account_id
