@@ -36,4 +36,16 @@ for how to use it.
 |---|---|
 | `terraform/main.tf` | B0 |
 | `terraform/lifecycle.tf` | B1 |
-| `app/access_control.py`, `scripts/cost_tag_check.py` | B2 — stubs to implement |
+| `app/access_control.py`, `scripts/cost_tag_check.py` | B2 — implemented |
+
+## Candidate submission artifacts
+
+- [B0 — Terraform count trap](B0.md)
+- [B1 — Glacier minimum-duration cost and lifecycle redesign](B1.md)
+- [B2 design notes and idempotency key](DESIGN_NOTES.md)
+- [Terminal verification log](TERMINAL_LOG.md)
+- [AI conversation evidence](.ai-conversations/implementation.md)
+
+**Screen recording:** add the URL for the required single continuous, unedited,
+narrated recording here after recording it. The recording must begin with opening
+the repository and keep the terminal visible through the final verification.
